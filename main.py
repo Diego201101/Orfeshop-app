@@ -30,7 +30,7 @@ def probar_db():
             connection.close()
 
 
-@app.get("/api/ver_tablas")
+@app.get("/ver_tablas")
 def ver_tablas():
     try:
         connection = mysql.connector.connect(
