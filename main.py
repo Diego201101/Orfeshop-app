@@ -6,15 +6,15 @@ app = FastAPI()
 
 # Datos de la Data Tier (VM de tu compañero)
 db_config = {
-    'host': '10.0.0.X',  # <--- COLOCA AQUÍ LA IP PRIVADA DE LA VM DE BASE DE DATOS
+    'host': '10.0.0.5',  # <--- COLOCA AQUÍ LA IP PRIVADA DE LA VM DE BASE DE DATOS
     'user': 'Orfeadmin',
-    'password': 'tu_password',
-    'database': 'orfeshop'
+    'password': 'password',
+    'database': 'OrfeShop'
 }
 
 @app.get("/")
 def inicio():
-    return {"mensaje": "Bienvenido a la API de OrfeShop - Capa de Aplicación operativa"}
+    return {"mensaje": "Bienvenido a la API de OrfeShop - Capa de Aplicacion operativa"}
 
 @app.get("/probar_db")
 def probar_db():
