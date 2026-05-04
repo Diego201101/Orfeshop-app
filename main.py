@@ -28,3 +28,28 @@ def probar_db():
     finally:
         if 'connection' in locals() and connection.is_connected():
             connection.close()
+
+
+@app.get("/api/ver_tablas")
+def ver_tablas():
+    try:
+        connection = mysql.connector.connect(
+            host=os.getenv('DB_HOST'),
+            user=os.getenv('DB_USER'),
+            password=os.getenv('DB_PASSWORD'),
+            database=os.getenv('DB_NAME')
+        )
+        cursor = connection.cursor()
+        # Consulta para listar las tablas
+        cursor.execute("SHOW TABLES;")
+        tablas = cursor.fetchall()
+        
+        cursor.close()
+        connection.close()
+        
+        return {
+            "status": "Éxito",
+            "tablas_encontradas": [t[0] for t in tablas]
+        }
+    except Error as e:
+        return {"status": "Error", "mensaje": str(e)}
