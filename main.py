@@ -6,10 +6,10 @@ app = FastAPI()
 
 # Datos de la Data Tier (VM de tu compañero)
 db_config = {
-    'host': '10.0.0.5',  # <--- COLOCA AQUÍ LA IP PRIVADA DE LA VM DE BASE DE DATOS
-    'user': 'Orfeadmin',
-    'password': 'password',
-    'database': 'OrfeShop'
+    'host': os.getenv('DB_HOST'),
+    'user': os.getenv('DB_USER'),
+    'password': os.getenv('DB_PASSWORD'),
+    'database': os.getenv('DB_NAME')
 }
 
 @app.get("/")
