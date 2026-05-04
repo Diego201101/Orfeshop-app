@@ -75,27 +75,27 @@ def mostrar_tabla(nombre_tabla: str):
         return {"status": "Error", "mensaje": str(e)}
 
 # 1. Ver categorías (Ya vimos que esta sí existe)
-@app.get("/api/consultas/categorias")
+@app.get("/consultas/categorias")
 def ver_categorias():
     # Ajusta 'Categoria' según lo que viste en el SHOW TABLES
     query = "SELECT * FROM Categoria;" 
     return ejecutar_query(query)
 
 # 2. Productos más caros (Ajusta 'Producto' y 'precio' según tu tabla)
-@app.get("/api/consultas/top_precios")
+@app.get("/consultas/top_precios")
 def productos_caros():
     # Ejemplo: Si tu tabla se llama 'Producto' en vez de 'productos'
     query = "SELECT * FROM Producto ORDER BY precio DESC LIMIT 5;"
     return ejecutar_query(query)
 
 # 3. Listar lo que hay en una tabla específica (Ej. Clientes o Usuarios)
-@app.get("/api/consultas/usuarios")
+@app.get("/consultas/usuarios")
 def ver_usuarios():
     query = "SELECT nombre, correo FROM Usuario LIMIT 10;"
     return ejecutar_query(query)
 
 # 4. Conteo total de una tabla (Ej. ¿Cuántas ventas hay?)
-@app.get("/api/consultas/conteo_ventas")
+@app.get("/consultas/conteo_ventas")
 def total_ventas():
     query = "SELECT COUNT(*) as total FROM Venta;"
     return ejecutar_query(query)
