@@ -74,35 +74,42 @@ def mostrar_tabla(nombre_tabla: str):
     except Error as e:
         return {"status": "Error", "mensaje": str(e)}
 
-
-# 1. Ver productos con poco stock (Menos de 5 unidades)
-@app.get("/consultas/bajo_stock")
-def bajo_stock():
-    query = "SELECT nombre, stock FROM productos WHERE stock < 5;"
+# 1. Ver categorías (Ya vimos que esta sí existe)
+@app.get("/api/consultas/categorias")
+def ver_categorias():
+    # Ajusta 'Categoria' según lo que viste en el SHOW TABLES
+    query = "SELECT * FROM Categoria;" 
     return ejecutar_query(query)
 
-# 2. Ver los 5 productos más caros
-@app.get("/consultas/productos_premium")
+# 2. Productos más caros (Ajusta 'Producto' y 'precio' según tu tabla)
+@app.get("/api/consultas/top_precios")
 def productos_caros():
-    query = "SELECT nombre, precio FROM productos ORDER BY precio DESC LIMIT 5;"
+    # Ejemplo: Si tu tabla se llama 'Producto' en vez de 'productos'
+    query = "SELECT * FROM Producto ORDER BY precio DESC LIMIT 5;"
     return ejecutar_query(query)
 
-# 3. Listar clientes registrados recientemente
-@app.get("/consultas/clientes_nuevos")
-def clientes_nuevos():
-    query = "SELECT nombre, email FROM clientes ORDER BY id DESC LIMIT 10;"
+# 3. Listar lo que hay en una tabla específica (Ej. Clientes o Usuarios)
+@app.get("/api/consultas/usuarios")
+def ver_usuarios():
+    query = "SELECT nombre, correo FROM Usuario LIMIT 10;"
     return ejecutar_query(query)
 
-# 4. Total de ventas (Suma de precios)
-@app.get("/consultas/total_ventas")
+# 4. Conteo total de una tabla (Ej. ¿Cuántas ventas hay?)
+@app.get("/api/consultas/conteo_ventas")
 def total_ventas():
-    query = "SELECT SUM(total) as gran_total FROM ventas;"
+    query = "SELECT COUNT(*) as total FROM Venta;"
     return ejecutar_query(query)
 
-# 5. Buscar un producto por nombre (ejemplo: /consultas/buscar?nombre=torta)
-@app.get("/consultas/buscar")
-def buscar_producto(nombre: str):
-    query = f"SELECT * FROM productos WHERE nombre LIKE '%{nombre}%';"
+# 5. Consulta combinada (Si tienes llaves foráneas)
+@app.get("/api/consultas/productos_con_categoria")
+def productos_detalle():
+    # Ejemplo de un JOIN sencillo
+    query = """
+        SELECT p.nombre, c.nombre as categoria 
+        FROM Producto p 
+        JOIN Categoria c ON p.id_categoria = c.id 
+        LIMIT 10;
+    """
     return ejecutar_query(query)
 
 # Función auxiliar para no repetir código
