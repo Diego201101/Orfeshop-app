@@ -15,7 +15,11 @@ app = FastAPI()
 # CORS - Configuración amplia para Azure
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[
+        "http://localhost",
+        "http://127.0.0.1",
+        "http://20.119.200.194"
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
