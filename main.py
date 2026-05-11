@@ -62,7 +62,7 @@ class Compra(BaseModel):
     ruc: str = ""
     razonSocial: str = ""
     direccionEnvio: str = ""
-    productos: List[dict]
+    productos: List[ProductoCompra]
 
 class ActualizarEstadoPedido(BaseModel):
     estadoEnvio: str
