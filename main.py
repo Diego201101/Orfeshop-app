@@ -17,10 +17,10 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://20.119.200.194",           # IP de tu VM presentación
+        "http://20.119.200.194",        # IP de VM presentación
+        "http://20.119.200.194:80",
         "http://localhost:5500",
         "http://127.0.0.1:5500",
-        "http://20.119.200.194:80",
     ],
     allow_credentials=True,
     allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
