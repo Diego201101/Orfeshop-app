@@ -7,6 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from typing import List
 import time
+from fastapi.middleware.cors import CORSMiddleware
 
 load_dotenv()
 
@@ -16,13 +17,13 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://localhost",
-        "http://127.0.0.1",
-        "http://20.119.200.194"
-        "*"                                 
+        "http://20.119.200.194",           # IP de tu VM presentación
+        "http://localhost:5500",
+        "http://127.0.0.1:5500",
+        "http://20.119.200.194:80",
     ],
     allow_credentials=True,
-    allow_methods=["*"],
+    allow_methods=["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allow_headers=["*"],
 )
 
