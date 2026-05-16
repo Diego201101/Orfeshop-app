@@ -253,9 +253,9 @@ def realizar_compra(compra: Compra):
                        (nuevo_id, nuevo_id, float(compra.costoTotal), f"TRX-{nuevo_id}-{int(time.time())}"))
 
         # Insertar metodoPago
-        nombre_metodo = {1: "Tarjeta de Crédito/Débito", 2: "Transferencia Bancaria", 3: "Yape / Plin"}.get(compra.idMetodoPago, "Otro")
-        cursor.execute("INSERT INTO metodoPago (idmetodoPago, idPago, nombreMetodo, descripcionMetodoPago, estado) VALUES (%s, %s, %s, %s, 'Activo')",
-                       (nuevo_id, nuevo_id, nombre_metodo, f"Pago procesado con {nombre_metodo}"))
+        #nombre_metodo = {1: "Tarjeta de Crédito/Débito", 2: "Transferencia Bancaria", 3: "Yape / Plin"}.get(compra.idMetodoPago, "Otro")
+        #cursor.execute("INSERT INTO metodoPago (idmetodoPago, idPago, nombreMetodo, descripcionMetodoPago, estado) VALUES (%s, %s, %s, %s, 'Activo')",
+        #               (nuevo_id, nuevo_id, nombre_metodo, f"Pago procesado con {nombre_metodo}"))
 
         # Insertar Comprobante
         cursor.execute("INSERT INTO Comprobante (idComprobante, idmetodoPago, tipoComprobante) VALUES (%s, %s, %s)",
