@@ -17,11 +17,11 @@ app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
-        "http://20.119.200.194",
-        "http://20.119.200.194:80",
+        "http://20.230.8.140",           # Nueva IP presentación
+        "http://20.230.8.140:80",        # Nueva IP presentación con puerto
         "http://localhost:5500",
         "http://127.0.0.1:5500",
-        "http://20.94.89.226"
+        "http://52.247.7.68"             # IP aplicación (backend)
     ],
     allow_credentials=True,
     allow_methods=["*"],
